@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- Your app title -->
+    <title>My App</title>
+    <!-- Path to Framework7 iOS CSS theme styles-->
+    <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.ios.min.css">
+    <!-- Path to Framework7 iOS related color styles -->
+    <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.ios.colors.min.css">
+    <!-- Path to your custom app styles-->
+
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-eval' 'unsafe-inline'">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
+
+
+  </head>
+  <body>
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="views tabs">
+
+        <div id="FeedView" class="view view-main tab active">
+          <div class="navbar">
+            <div class="navbar-inner">
+                <div class="center">Ride2U</div>
+                <div class="right">
+                    <a href="activity.html"  >
+                        <i class="icon icon-bars"></i>
+
+                    </a>
+                </div>
+            </div>
+          </div>
+
+            <div class="pages">
+                <div data-page="FeedView" class="page toolbar-through navbar-through no-swipeback">
+                  <div class="page-content">
+                      <div id="feed"></div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="Record" class="view tab ">
+          <div class="navbar">
+            <div class="navbar-inner">
+                <div class="center">Record</div>
+                <div class="right">
+                    <a href="activity.html"  >
+                        <i class="icon icon-bars"></i>
+
+                    </a>
+                </div>
+            </div>
+          </div>
+
+            <div class="pages">
+                <div data-page="FeedView" class="page toolbar-through navbar-through no-swipeback">
+                  <div class="page-content">
+                      <div id="countid"></div>
+                      <div id="adisak"></div>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div id="ProfileView" class="view tab">
+
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="center sliding i18n profilename" data-i18n="app.name">Adisak Chaiyakul</div>
+                </div>
+            </div>
+
+            <div class="pages navbar-through">
+                <div data-page="ProfileView" class="page contact-page profilepage">
+                    <div class="page-content">
+                      <div id="profile"></div>
+                      <a href="activity.html" data-view=".profilepage">Feed</a>
+                      <div id="own-activity"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="settingView" class="view setting-view tab">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="center sliding i18n" data-i18n="app.name">SETTING</div>
+                </div>
+            </div>
+            <div class="pages navbar-through">
+                <div data-page="setting" class="page">
+                  <div class="page-content">
+                    <div id="location_distanc">
+
+                    </div>
+                    <div id="location_speed">
+
+                    </div>
+                    <div id="location_acceleration">
+
+                    </div>
+
+                    <div id="speedfromgps">
+                      <h1></h1>
+                    </div>
+                    <a href="#" class="logout">logout</a>
+                    Adisak Changed!!!!
+                  </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- toolbar start -->
+        <div class="toolbar tabbar tabbar-labels main-toolbar">
+            <div class="toolbar-inner">
+                <a href="#FeedView" class="tab-link">
+                    <i class="icon tabbar-demo-icon-1 "></i>
+                    <span class="tabbar-label ">FEED</span>
+                </a>
+                <a href="#" data-popup=".popup-add" class="open-popup tab-link">
+                    <i class="icon tabbar-demo-icon-2 "></i>
+                    <span class="tabbar-label " >NEW ACTIVITY</span>
+                </a>
+                <a href="#Record" class="tab-link">
+                    <i class="icon tabbar-demo-icon-3">
+                        <!-- <span class="badge badge-red">4</span> -->
+                    </i>
+                    <span class="tabbar-label ">RECORD</span>
+                </a>
+                <a href="#ProfileView" class="tab-link">
+                    <i class="icon tabbar-demo-icon-2 "></i>
+                    <span class="tabbar-label " >PROFILE</span>
+                </a>
+
+                <a href="#settingView" class="tab-link">
+                    <i class="icon tabbar-demo-icon-3">
+                        <!-- <span class="badge badge-red">4</span> -->
+                    </i>
+                    <span class="tabbar-label ">SETTING</span>
+                </a>
+
+            </div>
+        </div>
+        <!-- toolbar end -->
+    </div>
+
+
+
+    <!--- pupup -->
+    <div id="add-content" class="popup popup-add">
+      <div class="navbar">
+        <div class="navbar-inner">
+
+            <div class="left">Add New Activity</div>
+            <div class="right">
+                <a href="#" data-popup=".popup-add" class="close-popup" >
+                    <p>
+                      close
+                    </p>
+
+                </a>
+            </div>
+        </div>
+      </div>
+      <div class="content-block">
+
+
+          <div class="list-block">
+            <ul>
+              <!-- Text inputs -->
+              <form  class="list-block ajax-submit" enctype="multipart/form-data" action="http://188.166.237.93:3000/api/activity" method="POST" id="add_form">
+                <li>
+                  <div class="item-content">
+
+                    <div class="item-inner">
+                      <div class="item-input">
+                        <input type="text" name="title" placeholder="Title">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+
+                    <div class="item-inner">
+                      <div class="item-input">
+                        <input type="file" id="inserimagefile" name="image" placeholder="Title">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+
+                    <div class="item-inner">
+                      <div class="item-input">
+                        <input type="text" name="avgspeed" placeholder="ความเร็วเฉลี่ย">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+
+                    <div class="item-inner">
+                      <div class="item-input">
+                        <input type="text" name="maxbiker" placeholder="จำนวนผู้เข้าร่วม">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+
+                    <div class="item-inner">
+                      <div class="item-input">
+                        <input type="text" name="distance" placeholder="ระยะทาง หน่วยกิโลเมตร">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="icon icon-form-tel"></i></div>
+                    <div class="item-inner">
+                      <div class="item-input">
+                        <input type="time" name="time">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+                    <div class="item-inner">
+                      <div class="item-input">
+                        <input type="date" name="date" placeholder="Birth day" value="2015-04-30">
+
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <br/>
+                <li class="align-top">
+                  <div class="item-content">
+
+                    <div class="item-inner">
+                      <div class="item-input">
+                        <textarea rows="40" name="description" placeholder="รายละเอียด"></textarea>
+
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li style="display:none">
+                  <div class="item-content">
+
+                    <div class="item-inner">
+                      <div class="item-input">
+                        <input type="text" name="location" placeholder="location">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+
+                  <div id="selected_map" style="display:none;width:100%;height:300px">
+
+                  </div><br/>
+                  <a href="#" id="selected_map_button" class="button button-big color-gray button-fill widthfull">เลือกจุดนัดหมาย</a>
+                </li>
+                <li>
+                  <br/>
+                  <button class="button button-big color-green button-fill widthfull" type="submit">เพิ่ม</button>
+                  <br/>
+                </li>
+
+              </form>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="popup popup-map">
+      <div class="navbar">
+        <div class="navbar-inner">
+
+            <div class="left">เลือกสถานที่ของกิจกรรม</div>
+            <div class="right">
+                <a href="#" data-popup=".popup-map" class="close-popup" >
+                    <p>
+                      close
+                    </p>
+
+                </a>
+            </div>
+        </div>
+      </div>
+
+        <div id="map" style="width:100%;position:absolute;bottom:0px;top:0px"></div>
+        <div id="mappickerpin"></div>
+        <button id="mappickerbutton" class="button button-big color-green button-fill widthfull"> เลือก </button>
+
+    </div>
+
+    <!-- login page -->
+    <div class="login-screen modal-in">
+
+        <div class="view">
+          <div class="page">
+
+            <div class="page-content login-screen-content">
+              <div id="login-modal">
+                <a href="#" class="close-login-screen">close</a>
+                <div class="content">
+                  <br/><br/><br/><br/><br/><br/><br/><br/>
+                  <img id="myImage" src=""></img>
+                  <h1 class="text-center">RIDE2U3</h1>
+                  <hr/>
+                  <h4 class="text-center">BIKE & FRIEND & FUN</h4>
+                </div>
+                <div class="login-wrap">
+                  <div class="content">
+                    <form  class="" action="http://localhost:3000/api/authen/login" method="POST" id="login-form">
+                      <div class="input-box">
+                        <div class="item-input">
+                          <input type="text" name="email" value="" placeholder="Email">
+                        </div>
+                        <hr/>
+                        <div class="item-input">
+                          <input type="password" name="password" value="" placeholder="password">
+                        </div>
+                      </div>
+                      <button type="submit" name="submit" class="button button-big button-fill color-white  widthfull">Login</button>
+                      <a id="signupbutton" class="button button-big button-fill color-white  widthfull">Sign up</a>
+                    </form>
+
+                  </div>
+                </div>
+
+                  <div class="error-message text-center"><span class="radius5" style="display:none">err</span></div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="popup  complete-activity">
+      <div class="content-block">
+        <div id="complete-activity"></div>
+      </div>
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="bower_components/Framework7/dist/js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+
+    <!-- React.js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/build/react.js"></script>
+    <script src="js/build/react-dom.js"></script>
+    <script src="js/build/browser.min.js"></script>
+    <script src="bower_components/js-cookie/src/js.cookie.js"></script>
+    <script type="text/javascript" src="js/app.js" ></script>
+    <script src="js/react-feed.js" type="text/babel"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdye1W74DA4FGcTjhuqHWKK8Ktke4Xs4I&callback=initMap&libraries=geometry"
+        async defer></script>
+
+
+    <script>
+      var recordmap;
+      var selected_map, map, geocoder, infowindow, geometry;
+      function initMap() {
+        geocoder = new google.maps.Geocoder;
+        infowindow = new google.maps.InfoWindow;
+        geometry = google.maps.geometry.spherical;
+
+      }
+
+
+      console.log("fucking console");
+    </script>
+
+
+  </body>
+</html>

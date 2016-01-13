@@ -1,0 +1,283 @@
+.popup-add li .label{
+  padding-right: 20px;
+}
+
+.widthfull{
+  width: 100%;
+}
+.text-center{
+  text-align: center;
+}
+.radius5{
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/*Activity Page*/
+#activity{
+  margin-bottom: 100px;
+}
+
+#mappickerpin{
+  z-index: 99;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  margin-top: -50px;
+  background: url('/img/pin.png');
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+#mappickerbutton{
+  position: absolute;
+    bottom: 24px;
+    width: 80%;
+    left: 10%;
+    font-size: 1.8em;
+}
+
+.facebook-avatar img{
+  width:50px;height:50px;margin-left:-7px;margin-bottom:-5px
+}
+
+#feed .facebook-card .title{
+  float: left;
+  display: inline-block;
+  font-size: 1.5em;
+  color: #333;
+  font-weight: bold;
+}
+#feed .facebook-card .distance{
+  text-align: right;
+  float: right;
+  display: inline-block;
+  font-size: 2.1em;
+  padding: 5px;
+  background: #ff3b30;
+  color: #FFF;
+  font-weight: bold;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+#feed .facebook-card .content{
+  margin-top: 40px;
+
+}
+
+.block{
+  background: #FFF;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.3);
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #F3F3F3;
+}
+
+.blocktran{
+  margin: 10px;
+  padding: 10px;
+}
+.margintop40{
+  margin-top: -40px;
+}
+.paper-popup{
+  z-index: 99;
+  position: relative;
+  overflow: hidden;
+}
+
+.paper-popup h2{
+  margin: 0px;
+  color: #343434;
+  display: inline-block;
+  float: left;
+}
+.paper-popup .date{
+  display: inline-block;
+  margin: 5px;
+  float: right;
+}
+.box{
+  overflow: hidden;
+}
+.paper-popup .paper-label{
+  overflow: hidden;
+  border: double 5px #FFFFFF;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+.paper-popup .paper-label h1{
+  color: #FFF;
+  font-size: 1.7em;
+}
+.paper-popup .paper-label h1.top{
+  width: 100%;
+  margin:10px 0 0 0;
+}
+.paper-popup .paper-label h1.bottom{
+  width: 100%;
+  margin:0 0 10px 0;
+}
+
+.color1{
+  background: #1B85E1;
+}
+.color2{
+  background: #FF921E;
+}
+
+.color3{
+  background: #FDD327;
+}
+
+.color4{
+  background: #FB3F3F;
+}
+
+
+/*login section*/
+
+#login-modal .block{
+  background-color: none;
+}
+#login-modal{
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  background: rgba(22,204,122,1);
+  background: rgba(59,191,129,1);
+  background: -moz-linear-gradient(-45deg, rgba(59,191,129,1) 0%, rgba(50,179,132,1) 31%, rgba(31,107,194,1) 96%, rgba(24,128,240,1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(59,191,129,1)), color-stop(31%, rgba(50,179,132,1)), color-stop(96%, rgba(31,107,194,1)), color-stop(100%, rgba(24,128,240,1)));
+  background: -webkit-linear-gradient(-45deg, rgba(59,191,129,1) 0%, rgba(50,179,132,1) 31%, rgba(31,107,194,1) 96%, rgba(24,128,240,1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(59,191,129,1) 0%, rgba(50,179,132,1) 31%, rgba(31,107,194,1) 96%, rgba(24,128,240,1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(59,191,129,1) 0%, rgba(50,179,132,1) 31%, rgba(31,107,194,1) 96%, rgba(24,128,240,1) 100%);
+  background: linear-gradient(135deg, rgba(59,191,129,1) 0%, rgba(50,179,132,1) 31%, rgba(31,107,194,1) 96%, rgba(24,128,240,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3bbf81', endColorstr='#1880f0', GradientType=1 );
+}
+#login-modal form input{
+  display: block;
+  width: 100%;
+
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  font-size: 1.2em;
+  box-sizing: border-box;
+  border: 0px;
+}
+#login-modal hr{
+  margin: 0;
+}
+
+#login-modal .input-box{
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+#login-modal .button{
+  margin:10px 0;
+  color: #237BB5;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+#login-modal .login-wrap{
+  position: absolute;
+  bottom: 20%;
+  width: 100%;
+}
+#login-modal h4{
+  font-size: 2em;
+  color: #FFF;
+  font-weight: bold;
+  margin: 0px;
+}
+#login-modal h1{
+  color: #FFF;
+  margin: 0px;
+  font-size: 5em;
+  font-weight: bold;
+}
+#login-modal  .content{
+  margin: 20px;
+}
+
+#login-modal .error-message{
+  position: absolute;
+  width: 100%;
+  bottom: 20px;
+}
+#login-modal .error-message span{
+  padding: 10px;
+  margin-left: -20px;
+  background: #FFF;
+  color: #F15555;
+  font-weight: bold;
+}
+
+
+
+
+/*Profile Section*/
+#profile .profile-picture img{
+  width: 80%;
+  padding: 10%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+#profile  .profile-picture {
+    width: 25%;
+    float: left;
+}
+#profile ul{
+  display: flex;
+  margin: 0px;
+  margin-bottom: 10px;
+  padding: 0px;
+}
+#profile ul li {
+    flex-grow: 3;
+    list-style: none;
+    text-align: center;
+}
+#profile ul li p{
+  margin: 0.2em 0;
+  color: #555;
+}
+#profile ul li h4{
+  margin: 0.2em 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
+#profile .detail{
+  float: left;
+  width: 75%;
+}
+
+/*RECORD SECTION*/
+
+#recordmap,#maptracking,.maptracking{
+  width: 100%;
+  height: 300px;
+  background: red;
+}
+
+
+/*Complete record Activity*/
+.textarea{
+  resize: none;
+  width: 98%;
+}
