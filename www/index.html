@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.ios.colors.min.css">
     <!-- Path to your custom app styles-->
 
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-eval' 'unsafe-inline'">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: 'unsafe-eval' 'unsafe-inline'">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/main.css">
 
@@ -33,21 +33,24 @@
             <div class="navbar-inner">
                 <div class="center">Ride2U</div>
                 <div class="right">
-                    <a href="activity.html"  >
-                        <i class="icon icon-bars"></i>
-
-                    </a>
+                  <a class="refreshbutton">
+                    <i class="icon icon-bars"></i>
+                  </a>
                 </div>
             </div>
           </div>
 
-            <div class="pages">
-                <div data-page="FeedView" class="page toolbar-through navbar-through no-swipeback">
-                  <div class="page-content">
-                      <div id="feed"></div>
+          <div class="pages">
+              <div data-page="FeedView" class="page toolbar-through navbar-through no-swipeback">
+                <div class="page-content pull-to-refresh-content">
+                  <div class="pull-to-refresh-layer">
+                    <div class="preloader"></div>
+                    <div class="pull-to-refresh-arrow"></div>
                   </div>
+                    <div id="feed"></div>
                 </div>
-            </div>
+              </div>
+          </div>
 
         </div>
         <div id="Record" class="view tab ">
@@ -75,19 +78,23 @@
         </div>
 
 
-        <div id="ProfileView" class="view tab">
+        <div id="ProfileView" class="view view-profile tab">
 
             <div class="navbar">
                 <div class="navbar-inner">
-                    <div class="center sliding i18n profilename" data-i18n="app.name">Adisak Chaiyakul</div>
+                    <div class="center sliding i18n profilename" data-i18n="app.name" id="profilename">Adisak Chaiyakul</div>
                 </div>
             </div>
 
             <div class="pages navbar-through">
                 <div data-page="ProfileView" class="page contact-page profilepage">
-                    <div class="page-content">
+                    <div class="page-content pull-to-refresh-content">
+                      <div class="pull-to-refresh-layer">
+                        <div class="preloader"></div>
+                        <div class="pull-to-refresh-arrow"></div>
+                      </div>
                       <div id="profile"></div>
-                      <a href="activity.html" data-view=".profilepage">Feed</a>
+                      <!-- <a href="activity.html" data-view=".view-profile">Feed</a> -->
                       <div id="own-activity"></div>
                     </div>
 
@@ -117,8 +124,10 @@
                     <div id="speedfromgps">
                       <h1></h1>
                     </div>
-                    <a href="#" class="logout">logout</a>
-                    Adisak Changed!!!!
+                    <br/><br/>
+                    <a class="logout button button-big color-red button-fill widthfull" type="submit">logout</a>
+
+
                   </div>
 
                 </div>
@@ -129,26 +138,26 @@
         <div class="toolbar tabbar tabbar-labels main-toolbar">
             <div class="toolbar-inner">
                 <a href="#FeedView" class="tab-link">
-                    <i class="icon tabbar-demo-icon-1 "></i>
+                    <i class="icon tabbar-home"></i>
                     <span class="tabbar-label ">FEED</span>
                 </a>
                 <a href="#" data-popup=".popup-add" class="open-popup tab-link">
-                    <i class="icon tabbar-demo-icon-2 "></i>
+                    <i class="icon tabbar-add"></i>
                     <span class="tabbar-label " >NEW ACTIVITY</span>
                 </a>
                 <a href="#Record" class="tab-link">
-                    <i class="icon tabbar-demo-icon-3">
+                    <i class="icon tabbar-record">
                         <!-- <span class="badge badge-red">4</span> -->
                     </i>
                     <span class="tabbar-label ">RECORD</span>
                 </a>
                 <a href="#ProfileView" class="tab-link">
-                    <i class="icon tabbar-demo-icon-2 "></i>
+                    <i class="icon tabbar-profile"></i>
                     <span class="tabbar-label " >PROFILE</span>
                 </a>
 
                 <a href="#settingView" class="tab-link">
-                    <i class="icon tabbar-demo-icon-3">
+                    <i class="icon tabbar-setting">
                         <!-- <span class="badge badge-red">4</span> -->
                     </i>
                     <span class="tabbar-label ">SETTING</span>
@@ -183,7 +192,7 @@
           <div class="list-block">
             <ul>
               <!-- Text inputs -->
-              <form  class="list-block ajax-submit" enctype="multipart/form-data" action="http://188.166.237.93:3000/api/activity" method="POST" id="add_form">
+              <form  class="list-block ajax-submit" enctype="multipart/form-data" action="http://192.168.1.4:8080/api/activity" method="POST" id="add_form">
                 <li>
                   <div class="item-content">
 
@@ -198,9 +207,11 @@
                   <div class="item-content">
 
                     <div class="item-inner">
-                      <div class="item-input">
-                        <input type="file" id="inserimagefile" name="image" placeholder="Title">
-                      </div>
+
+                        <!-- <input type="file" id="inserimagefile" name="image" placeholder="Title"> -->
+                        <img id="sellected_image" src="" style="width:100%"/>
+                        <div id="sellect_image"> choose image </div>
+
                     </div>
                   </div>
                 </li>
@@ -236,7 +247,7 @@
                 </li>
                 <li>
                   <div class="item-content">
-                    <div class="item-media"><i class="icon icon-form-tel"></i></div>
+                    <div class="item-media">Date: </div>
                     <div class="item-inner">
                       <div class="item-input">
                         <input type="time" name="time">
@@ -292,7 +303,9 @@
 
               </form>
             </ul>
+            <div class="alertmsg"> plz!!!! </div>
           </div>
+
       </div>
     </div>
     <div class="popup popup-map">
@@ -325,40 +338,90 @@
 
             <div class="page-content login-screen-content">
               <div id="login-modal">
-                <a href="#" class="close-login-screen">close</a>
-                <div class="content">
-                  <br/><br/><br/><br/><br/><br/><br/><br/>
-                  <img id="myImage" src=""></img>
-                  <h1 class="text-center">RIDE2U3</h1>
-                  <hr/>
-                  <h4 class="text-center">BIKE & FRIEND & FUN</h4>
-                </div>
-                <div class="login-wrap">
-                  <div class="content">
-                    <form  class="" action="http://localhost:3000/api/authen/login" method="POST" id="login-form">
-                      <div class="input-box">
-                        <div class="item-input">
-                          <input type="text" name="email" value="" placeholder="Email">
-                        </div>
-                        <hr/>
-                        <div class="item-input">
-                          <input type="password" name="password" value="" placeholder="password">
-                        </div>
-                      </div>
-                      <button type="submit" name="submit" class="button button-big button-fill color-white  widthfull">Login</button>
-                      <a id="signupbutton" class="button button-big button-fill color-white  widthfull">Sign up</a>
-                    </form>
 
+                <div id='login-contianer'>
+                  <div class="content">
+                    <br/><br/><br/>
+                    <img id="myImage" src=""></img>
+                    <h1 class="text-center">RIDE2U</h1>
+                    <hr/>
+                    <h4 class="text-center">BIKE & FRIEND & FUN</h4>
                   </div>
-                </div>
+                  <div class="login-wrap">
+                    <div class="content">
+                      <form  class="" action="http://192.168.1.5:8080/api/authen/login" method="POST" id="login-form">
+                        <div class="input-box">
+                          <div class="item-input">
+                            <input type="text" name="email" value="" placeholder="Email">
+                          </div>
+                          <hr/>
+                          <div class="item-input">
+                            <input type="password" name="password" value="" placeholder="password">
+                          </div>
+                        </div>
+                        <button type="submit" name="submit" class="button button-big button-fill color-white  widthfull">Login</button>
+                        <a id="signupbutton" href="#" data-popup=".popup-services" class="open-popup button button-big button-fill color-white  widthfull">Sign up</a>
+                      </form>
+
+                    </div>
+                  </div>
 
                   <div class="error-message text-center"><span class="radius5" style="display:none">err</span></div>
+                </div>
+                <div id='signup-contianer' style="display: none">
+                  <div class="content">
+                    <br/><br/><br/>
+                    <h1 class="text-center">Sign up</h1>
+
+                    <img src="img/Bike-icon.png"/>
+                  </div>
+                  <div class="login-wrap">
+                    <div class="content">
+                      <form  class="" action="http://192.168.1.5:8080/api/authen/signup" method="POST" id="signup-form">
+                        <div class="input-box">
+                          <div class="item-input">
+                            <input type="text" name="name" value="" placeholder="Name">
+                          </div>
+                          <hr/>
+                          <div class="item-input">
+                            <input type="text" name="email" value="" placeholder="Email">
+                          </div>
+                          <hr/>
+                          <div class="item-input">
+                            <input type="password" name="password" value="" placeholder="password">
+                          </div>
+                          <div class="item-input hide">
+                            <input type="text" name="cover" value="defalse.jpg" placeholder="Email">
+                          </div>
+                          <hr/>
+                          <div class="item-input hide">
+                            <input type="password" name="image" value="defalse.jpg" placeholder="password">
+                          </div>
+                        </div>
+                        <button id="signupbuttonsubmit" type="submit" name="submit" class="button button-big button-fill color-white  widthfull">Sign up</button>
+                        <!-- <a  type="submit" href="#" class="button button-big button-fill color-white  widthfull">Sign up</a> -->
+                      </form>
+
+                    </div>
+                  </div>
+
+                  <div class="error-message text-center"><span class="radius5" style="display:none">err</span></div>
+                </div>
 
               </div>
             </div>
           </div>
         </div>
     </div>
+
+    <!-- signup page -->
+    <div class="popup popup-about">
+       <div class="content-block">
+         <p>About</p>
+         <p><a href="#" class="close-popup">Close popup</a></p>
+         <p>Lorem ipsum dolor ...</p>
+       </div>
+     </div>
 
     <div class="popup  complete-activity">
       <div class="content-block">

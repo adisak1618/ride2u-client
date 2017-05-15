@@ -6,7 +6,7 @@ var $$$ = Framework7.$;
 //map
 var factory = {};
 var activitymap;
-var base_url = "http://188.166.237.93:3000/";
+var base_url = "http://128.199.151.123:8080/";
 
 console.log(localStorage.getItem('token'));
 
@@ -34,7 +34,8 @@ $$('.logout').click(function (e) {
 // Add view
 var mainView = myApp.addView('.view-main', {
   // Because we want to use dynamic navbar, we need to enable it for this view:
-  dynamicNavbar: true
+  dynamicNavbar: true,
+  domCache: true
 });
 
 var recordView = myApp.addView('#Record', {
@@ -42,8 +43,9 @@ var recordView = myApp.addView('#Record', {
   dynamicNavbar: true
 });
 
-var profile = myApp.addView('#ProfileView', {
+var profile = myApp.addView('.view-profile', {
   // Because we want to use dynamic navbar, we need to enable it for this view:
+  domCache: true ,
   dynamicNavbar: true
 });
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -146,6 +148,7 @@ $$("#login-form").submit(function(e){
 
   var formData = myApp.formToJSON('#login-form');
   //alert(JSON.stringify(formData));
+  console.log(formData);
   $$.ajax({
     url:base_url+"api/authen/login",
     method:'POST',
@@ -174,6 +177,34 @@ $$("#login-form").submit(function(e){
         $$('#login-modal .error-message span').html("Unknow error!!!").css('display', 'inline');
       }
 
+    }
+  });
+
+});
+
+$$("#signup-form").submit(function(e){
+  e.preventDefault();
+
+  var formData = myApp.formToJSON('#signup-form');
+  //alert(JSON.stringify(formData));
+  console.log(formData);
+  $$.ajax({
+    url:base_url+"api/authen/signup",
+    method:'POST',
+    dataType:'json',
+    data:formData,
+    success:function(data, status, xhr){
+      console.log(data);
+
+
+        $$('#login-modal .error-message span').html('signup success!').css('display', 'inline');
+        setTimeout(function(){ $$('#login-modal .error-message span').hide(); }, 3000);
+
+
+    },
+    error: function(e){
+      $$('#login-modal .error-message span').html('signup fail').css('display', 'inline');
+      setTimeout(function(){ $$('#login-modal .error-message span').hide(); }, 3000);
     }
   });
 
@@ -226,20 +257,28 @@ $$("#login-form").submit(function(e){
 }
 factory.isLogin();
 
+$('#signupbutton').click(function(){
+    $('#signup-contianer').show();
+    $('#login-contianer').hide();
+});
 
+$('#signupbuttonsubmit').click(function(){
+    $('#signup-contianer').hide();
+    $('#login-contianer').show();
+});
 
-  $('#inserimagefile').click(function(){
-      navigator.camera.getPicture(
-        function(imageData){
-          console.log("on success");
-          console.log(imageData);
-          $('#myImage').attr('src',imageData);
-
-        },
-        function(){
-          console.log("on error");
-      },{
-
-      sourceType: 0
-      });
-  });
+// $('#inserimagefile').click(function(){
+//     navigator.camera.getPicture(
+//       function(imageData){
+//         console.log("on success");
+//         console.log(imageData);
+//         $('#inserimagefile').attr('src',imageData);
+//
+//       },
+//       function(){
+//         console.log("on error");
+//     },{
+//
+//     sourceType: 0
+//     });
+// });
